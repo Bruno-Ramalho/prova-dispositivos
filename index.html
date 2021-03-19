@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <h1>Minha biblioteca de fotos</h1>
+        <div>
+            <h2 class="carregar" id="carregar" onclick="carregarLista()">Carregar Imagens</h2>
+        </div>
+        <div class="container js-escondido">
+
+        </div>
+
+        <script>
+            const classeEscondido = "js-escondido";
+            const classeBotaoRemocao = "js-contato-remover";
+            var container = document.querySelector('.container');
+            
+            
+            async function pegarImagens()
+            {
+                const response = await fetch('https://picsum.photos/v2/list?page=1&limit=30');
+                return await response.json()
+            }
+            pegarImagens().then(response =>
+            {
+                console.log(response);
+                
+                response.map(function(val){ 
+                    container.innerHTML+=`
+                    <div class="box">
+                        <img src=`+val.download_url+` width="400" height="341">
+                        <div>
+                            <p class="favoritar mini" >Favoritar</p>
+                            <p class="anotar mini" >Anotar</p>
+                            <input class="anotacao" style="display:none" type="text">
+                            <p class="remover mini"onclick="excluir(this.parentElement)">Remover</p>
+                            <hr>
+                        </div>
+                    </div>`
+                })
+                var favoritar = document.querySelectorAll('.favoritar');
+                for(var i=0;i<favoritar.length;i++)
+                {
+                    favoritar[i].addEventListener('click',function(t)
+                    {
+                        if( t.target.innerHTML == "Favoritar")
+                        {
+                            t.target.innerHTML = "Desfavoritar";
+                        }else
+                        {
+                            t.target.innerHTML = "Favoritar";
+                        }
+                    })
+                }
+                var anotacao = document.querySelectorAll('.anotacao');
+                for(var i=0;i<anotacao.length;i++)
+                {
+                    anotacao[i].addEventListener('click',function(t)
+                    {
+                        if( t.target.querySelector('.anotacao').style.display == "none")
+                        {
+                            t.target.querySelector('.anotacao').style.display = "block";
+                        }else
+                        {
+                            t.target.querySelector('.anotacao').style.display = "none";
+                        }
+                    })
+                }
+            });
+            function carregarLista(){
+                container.classList.remove('js-escondido')
+            }
+
+            function excluir(elem){
+                elem.remove()
+            }
+            function anotar(){
+                
+            }
+        </script>
+    </body>
+</html>

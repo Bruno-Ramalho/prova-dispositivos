@@ -1,0 +1,15 @@
+.js-escondido{
+    display: none  !important;
+}
+.box {
+    margin-left: 125px;
+	width: 650px;
+	display: inline-block !important;
+}
+.favoritar{
+    margin-left: 0 !important;
+}
+.mini {
+    margin-left: 80px;
+    display: inline-block !important;
+}
