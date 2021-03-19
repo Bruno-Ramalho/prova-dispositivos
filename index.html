@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="./style.css" />
     </head>
     <body>
-        <h1>Minha biblioteca de fotos</h1>
+        <h1 class="titulo">Minha biblioteca de fotos</h1>
         <div>
             <h2 class="carregar" id="carregar" onclick="carregarLista()">Carregar Imagens</h2>
         </div>
@@ -31,11 +31,11 @@
                     container.innerHTML+=`
                     <div class="box">
                         <img src=`+val.download_url+` width="400" height="341">
+                        <p class="remover"onclick="excluir(this.parentElement)">Remover</p>
                         <div>
                             <p class="favoritar mini" >Favoritar</p>
                             <p class="anotar mini" >Anotar</p>
                             <input class="anotacao" style="display:none" type="text">
-                            <p class="remover mini"onclick="excluir(this.parentElement)">Remover</p>
                             <hr>
                         </div>
                     </div>`
@@ -54,17 +54,17 @@
                         }
                     })
                 }
-                var anotacao = document.querySelectorAll('.anotacao');
+                var anotacao = document.querySelectorAll('.anotar');
                 for(var i=0;i<anotacao.length;i++)
                 {
                     anotacao[i].addEventListener('click',function(t)
                     {
-                        if( t.target.querySelector('.anotacao').style.display == "none")
+                        if( docummet.querySelector('.anotacao').style.display == "none")
                         {
-                            t.target.querySelector('.anotacao').style.display = "block";
+                            docummet.querySelector('.anotacao').style.display = "block";
                         }else
                         {
-                            t.target.querySelector('.anotacao').style.display = "none";
+                            documment.querySelector('.anotacao').style.display = "none";
                         }
                     })
                 }
@@ -75,9 +75,6 @@
 
             function excluir(elem){
                 elem.remove()
-            }
-            function anotar(){
-                
             }
         </script>
     </body>

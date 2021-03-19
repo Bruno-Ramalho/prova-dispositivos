@@ -10,6 +10,17 @@
     margin-left: 0 !important;
 }
 .mini {
+    cursor: pointer;
     margin-left: 80px;
     display: inline-block !important;
+}
+.titulo{
+    text-align: center;
+}
+.carregar{
+    cursor: pointer;
+    text-align: center;
+}
+.remover{
+    cursor: pointer;
 }
